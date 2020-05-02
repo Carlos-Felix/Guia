@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía git</title>
+    <link rel="stylesheet" href= "css/prism.css">
+    <link rel="stylesheet" href="css/estilos1.css" >
+    
+</head>
+<body>
+    <div id = "menu">
+        <a href = "#git">GIT</a>
+        <ul id= "accordion">
+            <li>
+                <a href="#iniciar-repositorios">Iniciar Repositorios</a>
+                <ul>
+                    <li><a href = "#clonar-un-repositorio">Clonar un repositorio</a></li>
+                    <li><a href = "#iniciar-un-repositorio-nuevo">Crear un nuevo repositorio</a></li>
+                </ul >
+            </li>
+            
+            <li>
+                <a href="#manejo-del-repositorio">Manejo del repositorio</a>
+                <ul>
+                    <li><a href = "#ver-el-estado-de-un-repositorio">Ver el estado del repositorio</a></li>
+                    <li><a href = "#agregar-un-repositorio-al-stagin-area">Agregar archivos al stage</a></li>
+                    <li><a href = "#agregar-al repositorio">Hacer un commit</a></li>
+                    <li><a href="#borrar-archivos-no-seguidos">Borrar archivos no seguidos</a></li>
+                    <li><a href="#limpiar-working-directory">Limpia el working directory</a></li>
+                    <li><a href="#limpiar-stage">Limpiar stage</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#ramas">Ramas</a>
+                <ul>
+                    <li><a href = "#ver-ramas">Ver las ramas</a></li>
+                    <li><a href = "#crear-rama">Crear nueva rama</a></li>
+                    <li><a href = "#ir-a-una-rama">Cambiar de rama</a></li>
+                    <li><a href = "#elimina-ramas">Eliminar ramas</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#merge">Merge</a>
+                <ul>
+                    <li><a href="#abortar-merge">Abortar el merge</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#remotos">Remotos</a>
+                <ul>
+                    <li><a href = "#agregar-remotos">Agregar un remoto</a></li>
+                    <li><a href = "#ver-remotos">Ver los remotos</a></li>
+                    <li><a href = "#modificar-remotos">Modificar los remotos</a></li>
+                    <li><a href = "#git-diff">Git diff</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#act-desc-remotos">Actualizar y descargar desde un remoto</a>
+                <ul>
+                    <li><a href = "#git-push">Push</a></li>
+                    <li><a href = "#git-pull">Pull</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id = "main-cont">
+        <div id = "body-md">
+            <h1 id="git">GIT</h1>
+            <h2 id="iniciar-repositorios">INICIAR REPOSITORIOS</h2>
+            <ul>
+                <li><h3 id="clonar-un-repositorio">Clonar un repositorio</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git clone <url-repositorio>
+                            git clone https://github.com/Carlos-Felix/Generador-de-Horarios-UNI.git #Ejemplo
+                        </code>
+                    </pre>
+                </li>
+                <li><h3 id = "iniciar-un-repositorio-nuevo">Crear un nuevo repositorio:</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git init
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+            <h2 id = "manejo-del-repositorio">MANEJO DEL REPOSITORIO</h2>
+            <ul>
+                <li><h3 id = "ver-el-estado-de-un-repositorio">Ver el estado del repositorio:</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git status
+                            git status --ignored (ver archivos ignorados)</code>
+                    </pre>
+                </li>
+                <li><h3 id = "agregar-un-repositorio-al-stagin-area">Agregar archivos al "stage":</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git add &ltnombre-archivo&gt (agregar un archivo al stagin area (area de preparacion))
+                            git add main.cpp
+                            git add .     (agregar todos los archivos del working directiry al staging area)
+                        </code>
+                    </pre>
+                </li>
+                <li><h3 id = "agregar-al repositorio">Hacer un commit</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git commit -m "Información sobre commit"
+                            git commit --amend #Hace commit sobre el últumo commit para no tener que crear uno nuevo
+                        </code>
+                    </pre>
+                </li>
+                <li><h3 id = "borrar-archivos-no-seguidos">Borrar los archivos que no están seguidos:</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git clean -f
+                        </code>
+                    </pre>
+                </li>
+                <li><h3 id = "limpiar-working-directory">Elimina los últimos cambios no comiteados(borrar el working directory):</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git reset --hard  // usar en conjunto a clean
+                            git checkout -- &ltname-file&gt #Vuelve al ultimo commit el archivo
+                        </code>
+                    </pre>
+                </li>
+                <li><h3 id = "limpiar-stage">Sacar un archivo de stagin area:</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git reset HEAD &ltfile&gt #saca un archivo de stagin area
+                            git reset HEAD #saca todos lo archivos del stagin area
+                            git reset HEAD "GRAFOS/grafo.cpp" #Ejemplo
+                            
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+            <h2 id = "ramas">RAMAS</h2>
+            <ul>
+                <li><h3 id = "ver-ramas">Ver las ramas:</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git branch
+                            git branch --all #muestra todas las ramas, incluidas las remotas
+                        </code>
+                    </pre>
+                </li>
+                <li><h3 id = "crear-rama">Crear una nueva rama:</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git branch name-branch  #crear una nueva rama
+                            git branch login
+                        </code>
+                    </pre>
+                </li>
+                <li><h3 id = "ir-a-una-rama">Cambiar de rama:</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git checkout <name-branch>  # ir a una rama local o remota
+                            git checkout login #Ejemplo
+                        </code>
+                    </pre>
+                </li>
+                <li><h3 id = "elimina-ramas">Eliminar una rama:</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git branch -d &ltnombre-rama&gt
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+            <h2 id = "merge">MERGE</h2>
+            <ul>
+                <li><h3 id = "abortar-merge">Abortar el merge:</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git merge --abort   # Abortar el merge
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+            <h2 id = "remotos">REMOTOS</h2>
+            <ul>
+                <li><h3 id = "agregar-remotos">Agregar un remoto:</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git remote add &ltname-remote&gt &lturl-remote&gt #para poner un nuevo remoto
+                            git remote add github https://github.com/Carlos-Felix/codeforce.git #Ejemplo
+                            git remote add origin https://github.com/Carlos-Felix/codeforce.git #Ejemplo
+                        </code>
+                    </pre>
+                </li>
+                <li><h3 id = "ver-remotos">Ver los remotos:</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git remote -v
+                        </code>
+                    </pre>
+                </li>
+                <li><h3 id = "modificar-remotos">Modificar los remotos:</h3>
+                    <pre class = "language-bash">
+                        <code>
+                            git remote set-url name-remote url-remote //Se cambia el url
+                            git remote set-url origin https://github.com/Carlos-Felix/codeforce.git
+                        </code>
+                    </pre>
+                </li>
+                <li><h3 id = "git-diff">Git diff:</h3>
+                    <p>Muestra los cambios hechos en el archivo que no está en el stage</p>
+                    <pre class = "language-bash">
+                        <code>
+                            git diff &ltcode-commit1&gt &ltcode-commit2&gt
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+            <h2 id = "act-desc-remotos">ACTUALIZAR Y DESCARGAR DESDE UN REMOTO</h2>
+            <ul>
+                <li><h3 id="git-push">Push:</h3>
+                    <p>Para actualizar ramas desde el local</p>
+                    <pre class="language-bash">
+                        <code>
+                            git push #Envía los cambios de la rama actual a su rama remota en el repositorio origen, "simple" por defecto
+                            git push --all origin #Envía todas las ramas al origen
+                            git push -u &ltname-remoto&gt &ltname-rama-remoto&gt
+                            git push -u origin master  #Ejemplo
+                        </code>
+                    </pre>
+                </li>
+                <li><h3 id = "git-pull">Pull:</h3>
+                    <p>Para traer cambios de un remoto:</p></br>
+                    <pre class = "language-bash">
+                        <code>
+                            git pull #Trae cambios a la rama actual del remoto origin
+                            git pull --all #Trae cambios de todas la ramas del repo origin al local
+                            git pull &ltname-remote&gt &ltname-branch&gt
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+            
+            
+        </div>
+    </div>
+
+</body>
+<script src="script/jquery.js"></script>
+<script src="script/script.js"></script>
+<script src="script/prism.js"></script>
+</html>
